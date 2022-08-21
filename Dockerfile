@@ -2,7 +2,7 @@ FROM ubuntu
 
 # LABEL about the custom image
 LABEL maintainer="st173207@stud.uni-stuttart.de"
-LABEL version="1.0"
+LABEL version="1.1"
 LABEL description="This is custom Docker Image for \
 ITOM in Linux."
 # Environment variable will not prompt to install time zone etc when we use apt get install 
@@ -68,8 +68,8 @@ RUN cmake -G "Unix Makefiles" -DBUILD_WITH_PCL=OFF -DCMAKE_BUILD_TYPE=Release -D
     make -j4
 
 WORKDIR ../plugins
-RUN cmake -G "Unix Makefiles" -DBUILD_WITH_PCL=OFF -DCMAKE_BUILD_TYPE=Release -DITOM_SDK_DIR=../itom/SDK ../../sources/plugins
-#RUN make -j
+RUN cmake -G "Unix Makefiles" -DBUILD_WITH_PCL=OFF -DCMAKE_BUILD_TYPE=Release -DITOM_SDK_DIR=../itom/SDK ../../sources/plugins && \
+    make -j4
 
 WORKDIR ../itom
-CMD "./qitom"
+#CMD "./qitom"
